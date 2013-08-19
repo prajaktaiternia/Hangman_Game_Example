@@ -20,8 +20,7 @@ class Hangman
     loop do
     puts "\n\nGuess word\n"
     guessWord = gets.chomp
-    guessWord.upcase!
-    if guessWord.length > 1 && guessWord != 'QUIT'
+       if guessWord.length > 1 && guessWord != 'QUIT'
       guessWord = guessWord.split("").first
       puts "That was not a valid word. #{guessWord}."
     elsif guessWord.empty?

@@ -1,0 +1,7 @@
+apple
+ball
+cat
+dog
+elephant
+flag
+

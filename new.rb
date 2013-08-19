@@ -3,7 +3,7 @@ class Hangman
   WORD_LIST = File.read('dict.txt').split("\n")
   def initialize
   word = WORD_LIST[rand(WORD_LIST.length)]
-  wordlen = word.length
+   wordlen = word.length
   convertWord = word.split('')
   dashArray  = Array.new
   dashArray.each do |i|
@@ -19,7 +19,7 @@ class Hangman
   count=0
     loop do
     puts "\n\nGuess word\n"
-    guessWord = gets.chomp
+    guessWord = (gets.chomp).downcase
        if guessWord.length > 1 && guessWord != 'QUIT'
       guessWord = guessWord.split("").first
       puts "That was not a valid word. #{guessWord}."
@@ -43,7 +43,8 @@ class Hangman
         dashArray[posi]=guessWord
         print "\n#{dashArray}"
           if (count==wordlen)
-          print "Hey dude, congrats................."
+          print "Hey dude, congrats.................\n"
+          one_more_time
           exit
        end
      else
@@ -52,6 +53,8 @@ class Hangman
         @attempt+=1
         hangee
         if (@attempt==7) then
+          puts "oopssssssssss you hanged"
+          one_more_time
       exit
         end
       end
@@ -62,70 +65,34 @@ class Hangman
 def hangee
   case @attempt
       when 0
-      guy = "
-      \t|---
-      \t|
-      \t|
-      \t|
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t| \n\t| \n\t| \n\t| \n\t|_____"
     when 1
-      guy = "
-      \t|---
-      \t|  O
-      \t|
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t|  O \n\t| \n\t| \n\t|_____"
     when 2
-      guy = "
-      \t|---
-      \t|  O
-      \t|  |
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t|  O \n\t|  | \n\t| \n\t|_____"
     when 3
-      guy = "
-      \t|---
-      \t|  O
-      \t|  |/
-      \t|
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t|  O \n\t|  |/ \n\t| \n\t| \n\t|_____"
     when 4
-      guy = "
-      \t|---
-      \t|  O
-      \t| \\|/
-      \t|
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t|  O \n\t| \\|/ \n\t|\n\t| \n\t|_____"
     when 5
-      guy = "
-      \t|---
-      \t|  O
-      \t| \\|/
-      \t| /
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t|  O \n\t| \\|/ \n\t| / \n\t| \n\t|_____"
     when 6
-      guy = "
-      \t|---
-      \t|  O
-      \t| \\|/
-      \t| /\\
-      \t|
-      \t|_____"
+      guy = " \t|--- \n\t|--- \n\t|  O \n\t| \\|/ \n\t| /\\ \n\t| \n\t|_____"
     when 7
-      guy = "
-      \t|---
-      \t|  |
-      \t|  O
-      \t| \\|/
-      \t| /|\\
-      \t|_____"
+      guy = " \t|--- \n\t|  | \n\t|  O \n\t| \\|/ \n\t| /|\\ \n\t|_____"
   end
   puts guy+"\n\n"
- end
+end
+  def one_more_time
+    print "Do you want headache again(yes/no)? "
+    try_again = gets.chomp
+    if try_again == "no"
+      puts "Cool........!"
+      exit
+    else
+      initialize
+    end
+  end
 end
 Hangman.new
 

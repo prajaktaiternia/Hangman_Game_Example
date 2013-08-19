@@ -17,13 +17,20 @@ class Hangman
   correctWord =  Array.new(wordlen)
   @attempt = 0
   count=0
-
     loop do
     puts "\n\nGuess word\n"
     guessWord = gets.chomp
+    guessWord.upcase!
+    if guessWord.length > 1 && guessWord != 'QUIT'
+      guessWord = guessWord.split("").first
+      puts "That was not a valid word. #{guessWord}."
+    elsif guessWord.empty?
+      puts "You can enter a blank space, Please enter any word."
+    elsif guessWord == 'QUIT'
+      exit
+    end
     puts "you gussed #{guessWord}"
     collect = convertWord.each_index.select{|i| convertWord[i].casecmp(guessWord) == 0}
-    #puts collect
     collect.each do |tt|
       dashArray[tt] = guessWord
       count +=1

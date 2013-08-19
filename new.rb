@@ -1,9 +1,8 @@
 class Hangman
-
+  puts "Welcome to Hangman Game"
   WORD_LIST = File.read('dict.txt').split("\n")
   def initialize
   word = WORD_LIST[rand(WORD_LIST.length)]
-  puts word
   wordlen = word.length
   convertWord = word.split('')
   dashArray  = Array.new
@@ -12,18 +11,19 @@ class Hangman
     collect+=1
   end
   for i in (0..(wordlen-1))
+    print ' _'
     dashArray.push '_'
   end
   correctWord =  Array.new(wordlen)
   @attempt = 0
   count=0
-  puts "Welcome to Hangman Game"
+
     loop do
     puts "\n\nGuess word\n"
     guessWord = gets.chomp
     puts "you gussed #{guessWord}"
     collect = convertWord.each_index.select{|i| convertWord[i].casecmp(guessWord) == 0}
-    puts collect
+    #puts collect
     collect.each do |tt|
       dashArray[tt] = guessWord
       count +=1
